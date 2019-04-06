@@ -47,7 +47,6 @@ class Cadastro extends Component {
             this.props.modal(false);
        }
     render() {
-        console.log(this.props.indice)
         return (
             <div>
                 <div className="centralizar">
