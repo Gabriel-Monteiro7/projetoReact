@@ -1,0 +1,12 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "nome": "Transportadora CE",
+        "cnpj": "73.555.555/5555-55",
+        "insc": "444.444.444",
+        "latitude": "45.5555555",
+        "longitude": "64.5555555"
+      }
+    ]
+  }
