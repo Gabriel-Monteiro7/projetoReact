@@ -7,7 +7,7 @@ class Cadastro extends Component {
         super(props)
         this.state = {
             indice: this.props.indice+1,
-            user : this.props.user || { id: this.props.indice+1, nome: '', cnpj: '', insc: '', latitude: '', longitude:'',},
+            user : this.props.user || { id: this.props.indice+1, nome: '', cnpj: '', inscricaoEstadual: '', latitude: '', longitude:'',},
         }
     }
     updateValue = (valor,e) =>{
@@ -17,7 +17,7 @@ class Cadastro extends Component {
           user.cnpj = VMasker.toPattern(user.cnpj, "99.999.999/9999-99");
         }
         else if(valor === 2) 
-        user.insc = VMasker.toPattern(user.insc, "999.999.999");
+        user.inscricaoEstadual = VMasker.toPattern(user.inscricaoEstadual, "999.999.999");
         else if(valor === 3){
           let aux = parseFloat(user.latitude)
           if(aux<0)
@@ -39,7 +39,7 @@ class Cadastro extends Component {
         this.props.save(this.state.user);
         event.preventDefault();
         this.setState({
-            user : { id:this.state.user.id+1 , nome: '', cnpj: '', insc: '', latitude: '', longitude:''}
+            user : { id:this.state.user.id+1 , nome: '', cnpj: '', inscricaoEstadual: '', latitude: '', longitude:''}
         });
         alert("Dados salvos com sucesso!");
         
@@ -63,7 +63,7 @@ class Cadastro extends Component {
                             </div>
                             <div className="form-group col-sm-12">
                                 Inscrição Estadual
-              <input type="text" className="form-control" placeholder="999.999.999" required name="insc"  value={this.state.user.insc} onChange={(e) => this.updateValue(2,e)}/>
+              <input type="text" className="form-control" placeholder="999.999.999" required name="inscricaoEstadual"  value={this.state.user.inscricaoEstadual} onChange={(e) => this.updateValue(2,e)}/>
                             </div>
                             <div className="form-group col-sm-6">
                                 Latitude

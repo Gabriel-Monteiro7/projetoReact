@@ -31,16 +31,16 @@ class Visualizacao extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.t.state.users.map((item, indice) =>
+              {this.props.users.map((item, indice) =>
                 <tr key={indice}>
                   <td>{item.id}</td>
                   <td>{item.nome}</td>
                   <td>{item.cnpj}</td>
-                  <td>{item.insc}</td>
+                  <td>{item.inscricaoEstadual}</td>
                   <td>{item.latitude}</td>
                   <td>{item.longitude}</td>
-                  <td><Button variant="primary btn btn-sm" onClick={() => this.getIndice(indice)} >Primary</Button>{' '}
-                    <Button variant="danger btn btn-sm" onClick={() => this.props.removeUser(item)}>Remove</Button></td>
+                  <td><Button variant="primary btn btn-sm" onClick={() => this.getIndice(indice)} >Editar</Button>{' '}
+                    <Button variant="danger btn btn-sm" onClick={() => this.props.removeUser(item)}>Remover</Button></td>
                 </tr>
               )}
             </tbody>
