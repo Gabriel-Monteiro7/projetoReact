@@ -39,8 +39,8 @@ class Visualizacao extends Component {
                   <td>{item.inscricaoEstadual}</td>
                   <td>{item.latitude}</td>
                   <td>{item.longitude}</td>
-                  <td><Button variant="primary btn btn-sm" onClick={() => this.getIndice(indice)} >Editar</Button>{' '}
-                    <Button variant="danger btn btn-sm" onClick={() => this.props.removeUser(item)}>Remover</Button></td>
+                  <td><Button variant="btn btn-outline-primary btn-sm" onClick={() => this.getIndice(indice)} >Update</Button>{' '}
+                    <Button variant="btn btn-outline-danger btn-sm" onClick={() => this.props.removeUser(item)}>Delete</Button></td>
                 </tr>
               )}
             </tbody>
