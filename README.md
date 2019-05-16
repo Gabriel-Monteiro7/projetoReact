@@ -1,24 +1,20 @@
 
-# ProjetoAngular
 
-# Índice
-
- - [Condições do Projeto](https://github.com/Gabriel-Monteiro7/projetoAngular#Condições-do-Projeto)
+# ProjetoReact
 
 ## Condições do Projeto
 
- - consumir uma API no padrão Rest em React que armazenara os
-dados referentes ao modelo de dados passado
+ - Projeto desenvolvido em React que utiliza uma simples Api Restfull  feita em Node js.
 
 ## Visualização
 
-Este arquivo corresponde à visão da parte do cadastro do aplicativo.
-![enter image description here](https://lh3.googleusercontent.com/NPaEGT9S_UqRbjXVev60PSUYUIPk37XbfjLiSH5ASjZ42cv5yOPOnChVOfUIDxbd_IBpmXpcIHBs)
+Este é o componente que lista os dados armazenados.
+![enter image description here](https://lh3.googleusercontent.com/iIntbX3sO5mI8MaVH5kXX8qa8AH7Gy8XZ51636fbgLM8PYLKpsYkmIj9KfpwarR2GdfOJPwcop4W)
 
 
-Este arquivo corresponde à visão das informações do aplicativo.
+Este é o componente que trata do cadastro do user.
 
-![enter image description here](https://lh3.googleusercontent.com/Aj6k5_ohGHXSGlnxQg_drFKhS9JxEJgIIyC7afAQRW53kbZKr8uX8aeJfDP0bDStsFjTbiHfCXSU)
+![enter image description here](https://lh3.googleusercontent.com/arHTJIfJ9t9pEDSw2vmwBFyiYa1f38nutZHSfnxNkqCHEZGfdmTOQx2bu2BFksYt6rSMYKljOQbd)
 
 ## Comentários
 Este projeto foi construído com o objetivo de aprendizado por meio do uso da biblioteca React, então pode ter alguns problemas! 
