@@ -1,5 +1,5 @@
 const express = require('express');
-const router = require('express').Router();
+const router = express.Router();
 
 router.use('/', require('./selectAll'));
 router.use('/', require('./select'));

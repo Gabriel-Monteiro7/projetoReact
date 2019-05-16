@@ -21,6 +21,7 @@ class Visualizacao extends Component {
     this.setState({ value: value })
   }
   render() {
+    let {users} = this.props
     return (
       <div>
         <Container>
@@ -31,7 +32,7 @@ class Visualizacao extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.users.map((item, indice) =>
+              {users.map((item, indice) =>
                 <tr key={indice}>
                   <td>{item.id}</td>
                   <td>{item.nome}</td>
@@ -45,8 +46,8 @@ class Visualizacao extends Component {
               )}
             </tbody>
           </Table>
-          <Pagination pagination={(inicio, fim) => this.props.pagination(inicio, fim)} usersTotal={this.props.usersTotal} {...this.props} />
-          <ModalNew user={this.props.users[this.state.indice]} modal={(e) => this.modal(e)} value={this.state.value} save={(valor, indice) => this.props.save(valor, this.state.indice)} />
+          <Pagination pagination={(inicio, fim) => this.props.pagination(inicio, fim)} allUsers={this.props.allUsers} {...this.props} />
+          <ModalNew user={users[this.state.indice]} modal={(e) => this.modal(e)} value={this.state.value} save={(valor, indice) => this.props.save(valor, this.state.indice)} />
         </Container>
       </div >
     )

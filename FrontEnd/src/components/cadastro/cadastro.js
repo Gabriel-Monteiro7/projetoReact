@@ -1,7 +1,8 @@
 import React, {Component } from 'react';
 import '../../App.css';
 
-const VMasker = require('vanilla-masker');
+import VMasker from 'vanilla-masker'
+
 class Cadastro extends Component {
     constructor(props){
         super(props)
@@ -11,7 +12,7 @@ class Cadastro extends Component {
         }
     }
     updateValue = (valor,e) =>{
-        const user = { ...this.state.user };
+        const {user} =  this.state;
         user[e.target.name] = e.target.value;
         if(valor===1){
           user.cnpj = VMasker.toPattern(user.cnpj, "99.999.999/9999-99");
@@ -59,20 +60,20 @@ class Cadastro extends Component {
                             </div>
                             <div className="form-group col-sm-12">
                                 CNPJ
-              <input type="text" className="form-control" placeholder="99.999.999/9999-99" required name="cnpj"  value={this.state.user.cnpj} onChange={(e) => this.updateValue(1,e)} />
+              <input type="text" className="form-control" placeholder="99.999.999/9999-99" required name="cnpj"  value={this.state.user.cnpj} onChange={(e) => this.updateValue(1,e)} maxLength="18" minLength="18"/>
                             </div>
                             <div className="form-group col-sm-12">
                                 Inscrição Estadual
-              <input type="text" className="form-control" placeholder="999.999.999" required name="inscricaoEstadual"  value={this.state.user.inscricaoEstadual} onChange={(e) => this.updateValue(2,e)}/>
+              <input type="text" className="form-control" placeholder="999.999.999" maxLength="11" minLength="1" required name="inscricaoEstadual"  value={this.state.user.inscricaoEstadual} onChange={(e) => this.updateValue(2,e)}/>
                             </div>
                             <div className="form-group col-sm-6">
                                 Latitude
-              <input type="text" className="form-control" placeholder="99.9999999" required
+              <input type="text" className="form-control" placeholder="99.9999999" maxLength="11" minLength="1" required
                                     name="latitude"  value={this.state.user.latitude} onChange={(e) => this.updateValue(3,e)}/>
                             </div>
                             <div className="form-group col-sm-6">
                                 Longitude
-              <input type="text" className="form-control" placeholder="99.9999999" required
+              <input type="text" className="form-control" placeholder="99.9999999" maxLength="11" minLength="1" required
                                     name="longitude"  value={this.state.user.longitude} onChange={(e) => this.updateValue(4,e)}/>
                             </div>
                         </div>
