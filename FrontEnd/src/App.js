@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="App colums">
+        <div className="">
           <UserCrud />
         </div >
 

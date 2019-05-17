@@ -100,6 +100,7 @@ class UserCrud extends Component {
         let {allUsers} = this.state;
         return (
             <div>
+                
                 <NavBar changeScreen={(op) => this.changeScreen(op)} />
                 {this.state.opcao === 1 ? <Visualizacao pagination={(inicio, fim) => this.pagination(inicio, fim)} users={this.state.users} allUsers={allUsers}  quantity={ quantity}
                     colunas={['ID', 'NAME', 'CNPJ', 'INSCRIÇÃO ESTADUAL', 'LATITUDE', 'LONGITUDE', '']} removeUser={(item) => this.removeUser(item)} save={(valor, indice) => this.save(valor, indice)}{...this.props} t={this} /> : <Cadastro save={(valor, indice) => this.save(valor, indice)}

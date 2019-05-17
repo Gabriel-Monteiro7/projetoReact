@@ -4,8 +4,8 @@ import { Nav, Navbar } from 'react-bootstrap';
 
 const NavBar = (props) => {
     return (
-        <div className="App colums">
-          <Navbar bg="dark" variant="dark" expand="lg">
+        <div className="">
+          <Navbar bg="dark" variant="dark" expand="lg"  fixed="top">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">

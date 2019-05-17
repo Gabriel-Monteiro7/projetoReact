@@ -21,34 +21,32 @@ class Visualizacao extends Component {
     this.setState({ value: value })
   }
   render() {
-    let {users} = this.props
+    let { users } = this.props
     return (
-      <div>
-        <Container>
-          <Table striped bordered hover >
-            <thead>
-              <tr>
-                {this.props.colunas.map((item, key) => <th key={key}> {item} </th>)}
+      <div className="container">
+        <Table striped bordered hover responsive> 
+          <thead>
+            <tr>
+              {this.props.colunas.map((item, key) => <th key={key}> {item} </th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((item, indice) =>
+              <tr key={indice}>
+                <td>{item.id}</td>
+                <td>{item.nome}</td>
+                <td>{item.cnpj}</td>
+                <td>{item.inscricaoEstadual}</td>
+                <td>{item.latitude}</td>
+                <td>{item.longitude}</td>
+                <td><Button variant="btn btn-outline-primary btn-sm" onClick={() => this.getIndice(indice)} >Update</Button>{' '}
+                  <Button variant="btn btn-outline-danger btn-sm" onClick={() => this.props.removeUser(item)}>Delete</Button></td>
               </tr>
-            </thead>
-            <tbody>
-              {users.map((item, indice) =>
-                <tr key={indice}>
-                  <td>{item.id}</td>
-                  <td>{item.nome}</td>
-                  <td>{item.cnpj}</td>
-                  <td>{item.inscricaoEstadual}</td>
-                  <td>{item.latitude}</td>
-                  <td>{item.longitude}</td>
-                  <td><Button variant="btn btn-outline-primary btn-sm" onClick={() => this.getIndice(indice)} >Update</Button>{' '}
-                    <Button variant="btn btn-outline-danger btn-sm" onClick={() => this.props.removeUser(item)}>Delete</Button></td>
-                </tr>
-              )}
-            </tbody>
-          </Table>
-          <Pagination pagination={(inicio, fim) => this.props.pagination(inicio, fim)} allUsers={this.props.allUsers} {...this.props} />
-          <ModalNew user={users[this.state.indice]} modal={(e) => this.modal(e)} value={this.state.value} save={(valor, indice) => this.props.save(valor, this.state.indice)} />
-        </Container>
+            )}
+          </tbody>
+        </Table>
+        <Pagination pagination={(inicio, fim) => this.props.pagination(inicio, fim)} allUsers={this.props.allUsers} {...this.props} />
+        <ModalNew user={users[this.state.indice]} modal={(e) => this.modal(e)} value={this.state.value} save={(valor, indice) => this.props.save(valor, this.state.indice)} />
       </div >
     )
   }
