@@ -6,7 +6,7 @@ import {selectAllUser, selectUser, updateUser,deleteUser, insertUser} from './re
 
 import Cadastro from './cadastro/cadastro';
 import Visualizacao from './visualizacao/visualizacao';
-
+import NavBar from './Navbar'
 
 
 const  quantity = 10;
@@ -15,10 +15,18 @@ const initValue = {
     users: [],
     allUsers: [{}],
     inicio:0,
-    fim: quantity
+    fim: quantity,
+    opcao:1
 }
 class UserCrud extends Component {
     state = { ...initValue }
+      changeScreen = (op) =>{
+        this.setState({
+          ...this.state,
+          opcao:op,
+          
+        })
+      }
     componentWillMount() {
         selectAllUser().then(response => {
             let allUsers = response.data.data;
@@ -92,7 +100,8 @@ class UserCrud extends Component {
         let {allUsers} = this.state;
         return (
             <div>
-                {this.props.opcao === 1 ? <Visualizacao pagination={(inicio, fim) => this.pagination(inicio, fim)} users={this.state.users} allUsers={allUsers}  quantity={ quantity}
+                <NavBar changeScreen={(op) => this.changeScreen(op)} />
+                {this.state.opcao === 1 ? <Visualizacao pagination={(inicio, fim) => this.pagination(inicio, fim)} users={this.state.users} allUsers={allUsers}  quantity={ quantity}
                     colunas={['ID', 'NAME', 'CNPJ', 'INSCRIÇÃO ESTADUAL', 'LATITUDE', 'LONGITUDE', '']} removeUser={(item) => this.removeUser(item)} save={(valor, indice) => this.save(valor, indice)}{...this.props} t={this} /> : <Cadastro save={(valor, indice) => this.save(valor, indice)}
                         indice={allUsers.length === 0 ? 0 : allUsers[allUsers.length - 1].id} label="Cadastro" />}
             </div>

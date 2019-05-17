@@ -5,6 +5,32 @@
 ## Condições do Projeto
 
  - Projeto desenvolvido em React que utiliza uma simples Api Restfull  feita em Node js.
+ 
+## Quick Start
+	
+    # Clone the repository
+    git clone https://github.com/Gabriel-Monteiro7/projetoReact.git
+
+	# Go to home directory
+	cd projetoReact
+	
+	# Go to the backEnd directory
+	cd backEnd
+
+	# Install the dependencies
+	npm install
+
+	# Start production server
+	node index.js
+	
+	# Go to the FrontEnd directory
+	cd frontEnd
+	
+	# Install the dependencies
+	npm install
+
+	# Start production server
+	npm start
 
 ## Visualização
 
