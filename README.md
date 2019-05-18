@@ -8,25 +8,26 @@
  
 ## Instalação
 	
-    # Clone the repository
+    # Clone o repositório
+
     git clone https://github.com/Gabriel-Monteiro7/projetoReact.git
 
-	# Vá para o diretorio principal 
+	# Vá para o diretório principal 
 	cd projetoReact
 	
-	# Vá para o diretorio BackEnd
+	# Vá para o diretório BackEnd
 	cd backEnd
 
-	# Instale as dependencias
+	# Instale as dependências
 	npm install
 
 	# Inicie o servidor do backEnd
 	node index.js
 	
-	# Vá para o diretorio FrontEnd
+	# Vá para o diretório FrontEnd
 	cd frontEnd
 	
-	# Instale as dependencias
+	# Instale as dependências
 	npm install
 
 	# Inicie o servidor do frontEnd
