@@ -9,7 +9,6 @@
 ## Instalação
 	
     # Clone o repositório
-
     git clone https://github.com/Gabriel-Monteiro7/projetoReact.git
 
 	# Vá para o diretório principal 
