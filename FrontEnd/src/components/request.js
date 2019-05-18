@@ -7,7 +7,7 @@ const selectAllUser = () => {
 }
 
 const selectUser = (url) => {
-    return axios.get(urlBase+url);
+    return axios.get(urlBase + url);
 }
 
 const insertUser = (item) => {
@@ -23,10 +23,4 @@ const deleteUser = (item) => {
 }
 
 
-export{
-    selectAllUser,
-    selectUser,
-    insertUser,
-    updateUser,
-    deleteUser
-}
+export { selectAllUser, selectUser, insertUser, updateUser, deleteUser };

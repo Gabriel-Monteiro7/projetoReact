@@ -3,9 +3,7 @@ import './App.css';
 
 import UserCrud from './components/UserCrud'
 
-
 class App extends Component {
-
   render() {
     return (
       <div>
@@ -19,6 +17,4 @@ class App extends Component {
     );
   }
 }
-
-
 export default App;

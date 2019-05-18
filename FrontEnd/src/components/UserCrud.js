@@ -2,12 +2,11 @@
 import React, { Component } from 'react';
 
 import '../App.css';
-import { selectAllUser, selectUser, updateUser, deleteUser, insertUser } from './request'
 
 import Cadastro from './cadastro/cadastro';
+import NavBar from './Navbar';
+import { deleteUser, insertUser, selectAllUser, selectUser, updateUser } from './request';
 import Visualizacao from './visualizacao/visualizacao';
-import NavBar from './Navbar'
-
 
 const quantity = 2;
 const initValue = {
@@ -34,7 +33,6 @@ class UserCrud extends Component {
             this.pagination(0, quantity);
             console.log(response.data);
         })
-
     }
     save = (item, indice) => {
         let users = this.state.users
@@ -43,7 +41,6 @@ class UserCrud extends Component {
             updateUser(item).then(response => {
             })
             this.pagination(this.state.inicio, this.state.fim)
-
         }
         else {
             insertUser(item).then(response => {
@@ -56,7 +53,6 @@ class UserCrud extends Component {
             }
             this.pagination(this.state.inicio, this.state.fim)
         }
-
         this.setState({ users, allUsers });
     }
     removeUser = (item) => {

@@ -1,8 +1,10 @@
-import React, { } from 'react';
-import '../../../App.css';
-import { Modal, } from 'react-bootstrap';
+import React from 'react';
+import { Modal } from 'react-bootstrap';
 
-import Cadastro from '../../cadastro/cadastro'
+import '../../../App.css';
+
+import Cadastro from '../../cadastro/cadastro';
+
 const ModalNew = (props) => {
 
     return (
@@ -11,7 +13,7 @@ const ModalNew = (props) => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                    <Cadastro user={props.user} label="Editar Cadastro" opcao = 'put' save={(valor,indice) => props.save(valor,indice)} modal = {(e)=>props.modal(e)}/>
+                    <Cadastro user={props.user} label="Editar Cadastro" opcao='put' save={(valor, indice) => props.save(valor, indice)} modal={(e) => props.modal(e)} />
                 </Modal.Body>
             </Modal>
         </div>

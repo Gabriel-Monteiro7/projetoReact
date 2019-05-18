@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import '../../App.css';
-import { Table, Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap';
 
-import Pagination from './pagination/pagination'
-import ModalNew from './modal/Modal'
+import '../../App.css';
+
+import ModalNew from './modal/Modal';
+import Pagination from './pagination/pagination';
+
 
 class Visualizacao extends Component {
   constructor(props) {
@@ -24,7 +26,7 @@ class Visualizacao extends Component {
     let { users } = this.props
     return (
       <div className="container">
-        <Table striped bordered hover> 
+        <Table striped bordered hover>
           <thead>
             <tr>
               {this.props.colunas.map((item, key) => <th key={key}> {item} </th>)}

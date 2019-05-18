@@ -1,7 +1,7 @@
-import React, {Component } from 'react';
-import '../../App.css';
+import React, { Component } from 'react';
+import VMasker from 'vanilla-masker';
 
-import VMasker from 'vanilla-masker'
+import '../../App.css';
 
 class Cadastro extends Component {
     constructor(props){
@@ -36,7 +36,6 @@ class Cadastro extends Component {
         this.setState({ user });
        }
        addUser = (event) =>{
-        
         this.props.save(this.state.user);
         event.preventDefault();
         this.setState({
@@ -79,7 +78,6 @@ class Cadastro extends Component {
                         </div>
                         <button className="btn btn-dark" >Salvar</button>
                     </form>
-                    
                 </div >
             </div >
         );
