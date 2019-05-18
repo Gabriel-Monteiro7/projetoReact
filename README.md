@@ -6,33 +6,32 @@
 
  - Projeto desenvolvido em React que utiliza uma simples Api Restfull  feita em Node js.
  
-## Quick Start
+## Instalação
 	
     # Clone the repository
     git clone https://github.com/Gabriel-Monteiro7/projetoReact.git
 
-	# Go to home directory
+	# Vá para o diretorio principal 
 	cd projetoReact
 	
-	# Go to the backEnd directory
+	# Vá para o diretorio BackEnd
 	cd backEnd
 
-	# Install the dependencies
+	# Instale as dependencias
 	npm install
 
-	# Start production server
+	# Inicie o servidor do backEnd
 	node index.js
 	
-	# Go to the FrontEnd directory
+	# Vá para o diretorio FrontEnd
 	cd frontEnd
 	
-	# Install the dependencies
+	# Instale as dependencias
 	npm install
 
-	# Start production server
+	# Inicie o servidor do frontEnd
 	npm start
 	
-	# The SQL file is in the BackEnd directory, export it to the database.
 
 ## Visualização
 

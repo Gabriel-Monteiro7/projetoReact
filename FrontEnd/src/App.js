@@ -9,10 +9,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="">
-          <UserCrud />
-        </div >
-
+        <UserCrud />
         {/* <Switch>
           <Route exact path="/" component={Visualizacao} />
           <Route path="/cadastro" component={Cadastro} />

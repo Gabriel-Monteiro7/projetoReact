@@ -60,7 +60,7 @@ class Cadastro extends Component {
                             </div>
                             <div className="form-group col-sm-12">
                                 CNPJ
-              <input type="text" className="form-control" placeholder="99.999.999/9999-99" required name="cnpj"  value={this.state.user.cnpj} onChange={(e) => this.updateValue(1,e)} maxLength="18" minLength="18"/>
+              <input type="text" className="form-control" placeholder="99.999.999/9999-99" required name="cnpj"  value={this.state.user.cnpj} onChange={(e) => this.updateValue(1,e)} max="18" min="18"/>
                             </div>
                             <div className="form-group col-sm-12">
                                 Inscrição Estadual

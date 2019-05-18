@@ -4,15 +4,11 @@ const connection = require('./serve')
 
 router.post('/delete', (req, res) => {
     const item = req.body.item;
-    connection.query(`DELETE FROM transportadora WHERE id = ${item.id}`, (erro, result) => {
-        if (erro)
-            return res.send(erro)
-        else {
-            return res.json({
-                data: result
-            });
+    connection.table.destroy({
+        where:{
+            id:item.id 
         }
-    });
+    }).then(valor => {res.json(valor)})
 });
 
 module.exports = router
