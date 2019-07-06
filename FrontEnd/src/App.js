@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Transportadora from "./transportadora/index";
 
-import UserCrud from './components/UserCrud'
 
 class App extends Component {
   render() {
     return (
       <div>
-        <UserCrud />
+        <Transportadora />
         {/* <Switch>
           <Route exact path="/" component={Visualizacao} />
           <Route path="/cadastro" component={Cadastro} />
