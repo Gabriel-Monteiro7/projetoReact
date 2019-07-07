@@ -23,7 +23,7 @@ class Visualizacao extends Component {
     let { users } = this.props;
     return (
       <div className="container">
-        <Table striped bordered hover>
+        <Table striped bordered hover responsive>
           <thead>
             <tr>
               {this.props.colunas.map((item, key) => (
@@ -40,7 +40,7 @@ class Visualizacao extends Component {
                 <td>{item.inscricaoEstadual}</td>
                 <td>{item.latitude}</td>
                 <td>{item.longitude}</td>
-                <td>
+                <td id ="btn">
                   <Button
                     variant="btn btn-outline-primary btn-sm"
                     onClick={() => this.getIndice(indice)}

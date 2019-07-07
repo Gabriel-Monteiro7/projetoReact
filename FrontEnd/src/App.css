@@ -20,7 +20,9 @@
 }
 .container{
   margin-top: 50px;
-
+}
+.tr{
+  width: 50px;
 }
 @keyframes App-logo-spin {
   from {
@@ -50,6 +52,15 @@
 }
 .centralizar h2{
   text-align: center;
-  padding: 35px;
+  padding: 60px 0 10px 0;
 }
+#btn button{
+  width: 45%;
+}
+.footerNew{
+  margin-top: 65px;
+  margin-bottom: 0px;
+
+}
+
 

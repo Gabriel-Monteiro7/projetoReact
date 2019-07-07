@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import "../App.css";
 import NavBar from "../presentationals/navbar";
+import Footer from "../presentationals/footer";
 import {
   deleteUser,
   insertUser,
@@ -9,7 +10,7 @@ import {
   selectUser,
   updateUser
 } from "../utils/request";
-
+import { Redirect, Route, Switch } from "react-router-dom";
 import Cadastro from "./cadastro/index";
 import Visualizacao from "./visualizacao/index";
 
@@ -27,8 +28,7 @@ const initValue = {
   allUsers: [{}],
   inicio: 0,
   fim: quantity,
-  opcao: 1,
-  
+  opcao: 1
 };
 class Transportadora extends Component {
   state = { ...initValue };
@@ -36,7 +36,10 @@ class Transportadora extends Component {
     this.setState({
       ...this.state,
       opcao: op,
-      indiceFinal:this.state.allUsers.length === 0 ? 0 : this.state.allUsers[this.state.allUsers.length - 1].id
+      indiceFinal:
+        this.state.allUsers.length === 0
+          ? 0
+          : this.state.allUsers[this.state.allUsers.length - 1].id
     });
   };
   componentWillMount() {
@@ -53,16 +56,15 @@ class Transportadora extends Component {
     if (indice !== undefined) {
       updateUser(item).then(response => {});
       this.pagination(this.state.inicio, this.state.fim);
-    } 
-    else {
-      insertUser(item).then(response => {this.pagination(this.state.inicio, this.state.fim);});
-      if (this.state.users.length === quantity) 
-        allUsers.push(item);
+    } else {
+      insertUser(item).then(response => {
+        this.pagination(this.state.inicio, this.state.fim);
+      });
+      if (this.state.users.length === quantity) allUsers.push(item);
       else {
         users.push(item);
         allUsers.push(item);
       }
-      
     }
     this.setState({ users, allUsers });
   };
@@ -73,7 +75,11 @@ class Transportadora extends Component {
       allUsers = allUsers.filter(user => user !== item);
       let users = this.state.users;
       users = users.filter(user => user !== item);
-      this.setState({ users, allUsers,indiceFinal:this.state.indiceFinal-1 });
+      this.setState({
+        users,
+        allUsers,
+        indiceFinal: this.state.indiceFinal - 1
+      });
       alert("Dado deletado com sucesso");
       if (this.state.users.length % quantity === 1 || quantity === 1) {
         window.location.reload();
@@ -114,34 +120,45 @@ class Transportadora extends Component {
     let { allUsers } = this.state;
     return (
       <div>
-        <NavBar changeScreen={op => this.changeScreen(op)} />
-        {this.state.opcao === 1 ? (
-          <Visualizacao
-            pagination={(inicio, fim) => this.pagination(inicio, fim)}
-            users={this.state.users}
-            allUsers={allUsers}
-            quantity={quantity}
-            colunas={[
-              "ID",
-              "NAME",
-              "CNPJ",
-              "INSCRIÇÃO ESTADUAL",
-              "LATITUDE",
-              "LONGITUDE",
-              ""
-            ]}
-            removeUser={item => this.removeUser(item)}
-            save={(valor, indice) => this.save(valor, indice)}
+        <NavBar />
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={props => (
+              <Visualizacao
+                pagination={(inicio, fim) => this.pagination(inicio, fim)}
+                users={this.state.users}
+                allUsers={allUsers}
+                quantity={quantity}
+                colunas={[
+                  "ID",
+                  "NAME",
+                  "CNPJ",
+                  "INSCRIÇÃO ESTADUAL",
+                  "LATITUDE",
+                  "LONGITUDE",
+                  ""
+                ]}
+                removeUser={item => this.removeUser(item)}
+                save={(valor, indice) => this.save(valor, indice)}
+              />
+            )}
           />
-        ) : (
-          <Cadastro
-            save={(valor, indice) => this.save(valor, indice)}
-            indice={
-              this.state.indiceFinal
-            }
-            label="Cadastro"
+          <Route
+            path="/cadastro"
+            render={props => (
+              <Cadastro
+                save={(valor, indice) => this.save(valor, indice)}
+                indice={this.state.indiceFinal}
+                label="Cadastro"
+              />
+            )}
           />
-        )}
+          <Redirect from="*" to="/" />
+          {/* <Route path="/cadastro" component={Cadastro} /> */}
+        </Switch>
+        <Footer />
       </div>
     );
   }
