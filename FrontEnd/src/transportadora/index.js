@@ -14,81 +14,48 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Cadastro from "./cadastro/index";
 import Visualizacao from "./visualizacao/index";
 
-const quantity = 10;
-const initValue = {
-  user: {
-    id: undefined,
-    nome: undefined,
-    cnpj: undefined,
-    inscricaoEstadual: undefined,
-    latitude: undefined,
-    longitude: undefined
-  },
-  users: [],
-  allUsers: [{}],
-  inicio: 0,
-  fim: quantity,
-  opcao: 1
-};
+import { bindActionCreators } from "redux";
+import * as Actions from "../actions/todos";
+import { connect } from "react-redux";
+
 class Transportadora extends Component {
-  state = { ...initValue };
-  changeScreen = op => {
-    this.setState({
-      ...this.state,
-      opcao: op,
-      indiceFinal:
-        this.state.allUsers.length === 0
-          ? 0
-          : this.state.allUsers[this.state.allUsers.length - 1].id
-    });
+  state = {
+    inicio: 0,
+    fim: 10
   };
   componentWillMount() {
     selectAllUser().then(response => {
-      let allUsers = response.data;
-      this.setState({ allUsers: allUsers.sort((a, b) => a.id - b.id) });
-      this.pagination(0, quantity);
-      console.log(response.data);
+      this.props.selectAll(response.data);
+      this.pagination(0, this.props.store.data.quantity);
     });
   }
   save = (item, indice) => {
-    let users = this.state.users;
-    let allUsers = this.state.allUsers;
     if (indice !== undefined) {
       updateUser(item).then(response => {});
       this.pagination(this.state.inicio, this.state.fim);
     } else {
       insertUser(item).then(response => {
-        this.pagination(this.state.inicio, this.state.fim);
       });
-      if (this.state.users.length === quantity) allUsers.push(item);
-      else {
-        users.push(item);
-        allUsers.push(item);
-      }
+      this.props.addUser(item);
     }
-    this.setState({ users, allUsers });
+
   };
   removeUser = item => {
     if (confirm("Você deseja mesmo excluir o usuario?")) {
       deleteUser(item).then(function(response) {});
-      let allUsers = this.state.allUsers;
-      allUsers = allUsers.filter(user => user !== item);
-      let users = this.state.users;
-      users = users.filter(user => user !== item);
-      this.setState({
-        users,
-        allUsers,
-        indiceFinal: this.state.indiceFinal - 1
-      });
+      this.props.deleteUser(item);
       alert("Dado deletado com sucesso");
-      if (this.state.users.length % quantity === 1 || quantity === 1) {
+      if (
+        this.props.store.data.values.length % this.props.store.data.quantity === 1 ||
+        this.props.store.data.quantity === 1
+      ) {
         window.location.reload();
       }
     }
   };
   pagination(inicio, fim) {
-    let { allUsers } = this.state;
-    if (allUsers.length < quantity) {
+    let allUsers = this.props.store.data.allValues;
+    if (allUsers.length < this.props.store.data.quantity) {
       //Ate o vetor atingir o tamanho de  quantity
       fim = allUsers.length;
       inicio = 0;
@@ -98,8 +65,12 @@ class Transportadora extends Component {
     }
     if (inicio === undefined) {
       //Para o botão last
-      let ultimaPosicao = allUsers.length - (allUsers.length % quantity);
-      inicio = ultimaPosicao === fim ? fim - quantity : ultimaPosicao;
+      let ultimaPosicao =
+        allUsers.length - (allUsers.length % this.props.store.data.quantity);
+      inicio =
+        ultimaPosicao === fim
+          ? fim - this.props.store.data.quantity
+          : ultimaPosicao;
     }
     if (allUsers.length !== 0) {
       //Para não resgar valores quando for vazio
@@ -112,12 +83,11 @@ class Transportadora extends Component {
   }
   updateTable = url => {
     selectUser(url).then(response => {
-      let users = response.data;
-      this.setState({ users: users.sort((a, b) => a.id - b.id) });
+      this.props.selectUser(response.data);
     });
   };
   render() {
-    let { allUsers } = this.state;
+    let allUsers = this.props.store.data.allValues;
     return (
       <div>
         <NavBar />
@@ -128,9 +98,9 @@ class Transportadora extends Component {
             render={props => (
               <Visualizacao
                 pagination={(inicio, fim) => this.pagination(inicio, fim)}
-                users={this.state.users}
+                users={this.props.store.data.values}
                 allUsers={allUsers}
-                quantity={quantity}
+                quantity={this.props.store.data.quantity}
                 colunas={[
                   "ID",
                   "NAME",
@@ -150,7 +120,6 @@ class Transportadora extends Component {
             render={props => (
               <Cadastro
                 save={(valor, indice) => this.save(valor, indice)}
-                indice={this.state.indiceFinal}
                 label="Cadastro"
               />
             )}
@@ -158,9 +127,16 @@ class Transportadora extends Component {
           <Redirect from="*" to="/" />
           {/* <Route path="/cadastro" component={Cadastro} /> */}
         </Switch>
-        <Footer />
+        <Footer style ={{marginTop:this.props.store.data.values.lenght<5?"3000px":"100px"}} />
       </div>
     );
   }
 }
-export default Transportadora;
+
+const mapStateToProps = state => ({ store: state });
+
+const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Transportadora);

@@ -3,13 +3,15 @@ import VMasker from "vanilla-masker";
 import "../../App.css";
 
 
+import { bindActionCreators } from "redux";
+import * as Actions from "../../actions/todos";
+import { connect } from "react-redux";
+
 class Cadastro extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      indice: this.props.indice + 1,
-      user: this.props.user || {
-        id: this.props.indice + 1,
+    state = {
+      indice: this.props.store.data.indice ,
+      user:{
+        id: this.props.store.data.indice,
         nome: "",
         cnpj: "",
         inscricaoEstadual: "",
@@ -17,7 +19,6 @@ class Cadastro extends Component {
         longitude: ""
       }
     };
-  }
   updateValue = (valor, e) => {
     const { user } = this.state;
     user[e.target.name] = e.target.value;
@@ -46,7 +47,7 @@ class Cadastro extends Component {
     event.preventDefault();
     this.setState({
       user: {
-        id: this.state.user.id + 1,
+        id: this.state.indice+1,
         nome: "",
         cnpj: "",
         inscricaoEstadual: "",
@@ -59,6 +60,7 @@ class Cadastro extends Component {
     if (this.props.label === "Editar Cadastro") this.props.modal(false);
   };
   render() {
+    console.log(this.state.user)
     return (
       <div>
         <div className="centralizar">
@@ -141,4 +143,7 @@ class Cadastro extends Component {
     );
   }
 }
-export default Cadastro;
+const mapStateToProps = state => ({ store: state });
+
+const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
+export default connect(mapStateToProps,mapDispatchToProps)(Cadastro);

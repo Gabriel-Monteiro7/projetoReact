@@ -2,20 +2,16 @@ import React, { Component } from "react";
 import "./App.css";
 import Transportadora from "./transportadora/index";
 
+import store from './store'
 import { Provider } from 'react-redux'
 // import store from './store'
 
 class App extends Component {
   render() {
     return (
-      <div>
+        <Provider store={store}>
         <Transportadora />
-        {/* <Switch>
-          <Route exact path="/" component={Visualizacao} />
-          <Route path="/cadastro" component={Cadastro} />
-          <Redirect from = "*" to = "/"/>
-        </Switch> */}
-      </div>
+      </Provider>
     );
   }
 }

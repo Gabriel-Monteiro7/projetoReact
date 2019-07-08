@@ -4,6 +4,10 @@ import "../../App.css";
 import ModalNew from "../../presentationals/modal";
 import Pagination from "../../presentationals/pagination";
 
+import { bindActionCreators } from "redux";
+import * as Actions from "../../actions/todos";
+import { connect } from "react-redux";
+
 class Visualizacao extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +16,7 @@ class Visualizacao extends Component {
       indice: 0
     };
   }
+
   getIndice = indice => {
     this.setState({ indice: indice });
     this.modal(true);
@@ -20,6 +25,7 @@ class Visualizacao extends Component {
     this.setState({ value: value });
   };
   render() {
+    console.log(this.props.store.data)
     let { users } = this.props;
     return (
       <div className="container">
@@ -32,7 +38,7 @@ class Visualizacao extends Component {
             </tr>
           </thead>
           <tbody>
-            {users.map((item, indice) => (
+            {this.props.store.data.values.map((item, indice) => (
               <tr key={indice}>
                 <td>{item.id}</td>
                 <td>{item.nome}</td>
@@ -60,7 +66,7 @@ class Visualizacao extends Component {
         </Table>
         <Pagination
           pagination={(inicio, fim) => this.props.pagination(inicio, fim)}
-          allUsers={this.props.allUsers}
+          allUsers={this.props.store.data.allValue}
           {...this.props}
         />
         <ModalNew
@@ -73,4 +79,8 @@ class Visualizacao extends Component {
     );
   }
 }
-export default Visualizacao;
+const mapStateToProps = state => ({ store: state });
+
+const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
+
+export default connect(mapStateToProps,mapDispatchToProps)(Visualizacao);

@@ -19,11 +19,10 @@
   color: #61dafb;
 }
 .container{
-  margin-top: 50px;
+  margin: 120px 0px 0 0;
+  height: 100%;
 }
-.tr{
-  width: 50px;
-}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -58,9 +57,9 @@
   width: 45%;
 }
 .footerNew{
-  margin-top: 65px;
-  margin-bottom: 0px;
-
+  margin-top: 240px; 
+  position: absolute;
+  width: 100%;
 }
 
 
