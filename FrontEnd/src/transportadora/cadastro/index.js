@@ -1,24 +1,25 @@
 import React, { Component } from "react";
-import VMasker from "vanilla-masker";
-import "../../App.css";
-
-
-import { bindActionCreators } from "redux";
-import * as Actions from "../../actions/todos";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import VMasker from "vanilla-masker";
+import * as Actions from "../../actions/todos";
+import "../../App.css";
+import { insertUser, updateUser } from "../../utils/request";
 
 class Cadastro extends Component {
-    state = {
-      indice: this.props.store.data.indice ,
-      user:{
-        id: this.props.store.data.indice,
-        nome: "",
-        cnpj: "",
-        inscricaoEstadual: "",
-        latitude: "",
-        longitude: ""
-      }
-    };
+  state = {
+    user:
+      this.props.label !== "Cadastro"
+        ? this.props.store.data.value
+        : {
+            id: this.props.store.data.indice,
+            nome: "",
+            cnpj: "",
+            inscricaoEstadual: "",
+            latitude: "",
+            longitude: ""
+          }
+  };
   updateValue = (valor, e) => {
     const { user } = this.state;
     user[e.target.name] = e.target.value;
@@ -43,11 +44,18 @@ class Cadastro extends Component {
     this.setState({ user });
   };
   addUser = event => {
-    this.props.save(this.state.user);
+    let item = this.state.user;
+    if (item.id !== this.props.store.data.indice) {
+      updateUser(item).then(response => {});
+    } else {
+      insertUser(item).then(response => {});
+      this.props.addUser(item);
+    }
     event.preventDefault();
+    alert("Dados salvos com sucesso!");
     this.setState({
       user: {
-        id: this.state.indice+1,
+        id: this.props.store.data.indice + 1,
         nome: "",
         cnpj: "",
         inscricaoEstadual: "",
@@ -55,12 +63,9 @@ class Cadastro extends Component {
         longitude: ""
       }
     });
-    alert("Dados salvos com sucesso!");
-    
     if (this.props.label === "Editar Cadastro") this.props.modal(false);
   };
   render() {
-    console.log(this.state.user)
     return (
       <div>
         <div className="centralizar">
@@ -146,4 +151,7 @@ class Cadastro extends Component {
 const mapStateToProps = state => ({ store: state });
 
 const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
-export default connect(mapStateToProps,mapDispatchToProps)(Cadastro);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cadastro);

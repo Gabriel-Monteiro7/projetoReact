@@ -24,3 +24,11 @@ export function selectUser(values){
 
     }
 };
+export function indexUser(values){
+    return {
+        type:'INDEX_USER',
+        values
+
+    }
+};
+

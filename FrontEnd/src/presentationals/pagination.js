@@ -14,7 +14,7 @@ const Pagination = props => {
               First
             </button>
           </li>
-          {props.allUsers
+          {props.allValues
             .filter((user, indice) => indice % props.quantity === 0)
             .map((user, indice) => (
               <li className="page-item" key={indice}>

@@ -23,4 +23,3 @@ const deleteUser = item => {
 };
 
 export { selectAllUser, selectUser, insertUser, updateUser, deleteUser };
-

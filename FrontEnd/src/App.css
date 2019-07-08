@@ -19,8 +19,7 @@
   color: #61dafb;
 }
 .container{
-  margin: 120px 0px 0 0;
-  height: 100%;
+  padding: 75px 0;
 }
 
 @keyframes App-logo-spin {
@@ -57,9 +56,12 @@
   width: 45%;
 }
 .footerNew{
-  margin-top: 240px; 
+  padding-top: 60px; 
   position: absolute;
   width: 100%;
+}
+h1{
+  padding: 50px 0 ;
 }
 
 

@@ -13,7 +13,6 @@ const ModalNew = props => {
             user={props.user}
             label="Editar Cadastro"
             opcao="put"
-            save={(valor, indice) => props.save(valor, indice)}
             modal={e => props.modal(e)}
           />
         </Modal.Body>
